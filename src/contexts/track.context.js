@@ -6,23 +6,33 @@ const TrackContext = createContext({});
 
 export function TrackProvider({ children }) {
    
-    const [ allTracks, setAllTracks ] = useState([])
+    const [ allTracks, setAllTracks ] = useState([]);
+    const [ trackError, setTrackError ] = useState(null);
+    const [ success, setSuccess ] = useState(null);
 
     const getTracks = async () => {}
 
-    const createTrack = async ({ type, locations }) => {
+    const createTrack = async ({ userId, type, locations, time }) => {
         try {
-            await api.post('/tracks', { name: type, locations });
-        } catch (err) {
-            console.log(err);
+            const resp = await api.post('/track/', { userId, type, locations, time });
+            setSuccess(resp.data.message);
+        } catch ({ response }) {
+            setTrackError(response.data.message);
         }
+    }
+
+    const clearErrors = () => {
+        setTrackError(null);
     }
 
     return (
         <TrackContext.Provider value={{
             allTracks,
+            trackError,
+            success,
             getTracks,
-            createTrack
+            createTrack,
+            clearErrors
         }}>
             { children }
         </TrackContext.Provider>
