@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
@@ -12,18 +12,16 @@ export default function Account({ navigation }) {
 
     const { user, signOut } = useContext(AuthContext);
 
-    useEffect(() => {
-        navigation.setOptions({
-            headerRight: () => (
-                <TouchableOpacity
-                    style={ styles.headerBtn }
-                    onPress={ () => setIsVisible(true) }
-                >
-                    <FontAwesome name="sign-out" size={ 25 } />
-                </TouchableOpacity>
-            )
-        });
-    }, []);
+    navigation.setOptions({
+        headerRight: () => (
+            <TouchableOpacity
+                style={ styles.headerBtn }
+                onPress={ () => setIsVisible(true) }
+            >
+                <FontAwesome name="sign-out" size={ 25 } />
+            </TouchableOpacity>
+        )
+    });
 
     return (
         <View style={ styles.container }>
@@ -57,7 +55,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     headerBtn: {
-        marginRight: 10,
+        marginRight: 15,
         marginTop: 5
     },
     userInfo: {
