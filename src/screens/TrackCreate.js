@@ -5,6 +5,8 @@ import Map from '../components/Map';
 import ErrorBox from '../components/ErrorBox';
 
 import LocationContext from '../contexts/location.context';
+import TrackContext from '../contexts/track.context';
+
 import useLocation from '../hooks/useLocation';
 import Stopwatch from '../components/Stopwatch';
 
@@ -12,14 +14,17 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 export default function TrackCreate({ route, navigation }) {
     
-    const { color, mode } = route.params;
+    const { trackError, clearErrors } = useContext(TrackContext);
     const { addLocation, recording } = useContext(LocationContext);
+    const { color, mode } = route.params;
     
     const callback = useCallback((location) => {
         addLocation(location, recording);
     }, [recording]);
 
-    const [ error, setError ] = useLocation(navigation.isFocused() || recording, callback);
+    const [ locationError, setLocationError ] = useLocation(
+        navigation.isFocused() || recording, callback
+    );
 
     navigation.setOptions({
         headerTintColor: color,
@@ -39,8 +44,14 @@ export default function TrackCreate({ route, navigation }) {
             <Map color={ color } />
 
             { 
-                error ? 
-                    <ErrorBox error={ error } onRemoveBox={ () => setError(null) } type="top" offsetY={ -150 } /> 
+                locationError ? 
+                    <ErrorBox error={ locationError } onRemoveBox={ () => setLocationError(null) } type="top" offsetY={ -150 } /> 
+                : null
+            }
+
+            { 
+                trackError ? 
+                    <ErrorBox error={ trackError } onRemoveBox={ () => clearErrors(null) } type="top" offsetY={ -150 } /> 
                 : null
             }
 
@@ -54,7 +65,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     headerBtn: {
-        marginLeft: 10,
+        marginLeft: 15,
         marginTop: 5
     }
 });
