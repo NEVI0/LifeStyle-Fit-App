@@ -5,9 +5,11 @@ import { AntDesign, FontAwesome5, Entypo } from '@expo/vector-icons';
 
 import LocationContext from '../contexts/location.context';
 import TrackContext from '../contexts/track.context';
+import AuthContext from '../contexts/auth.context';
 
 export default function Stopwatch({ type }) {
 
+    const { user: { _id } } = useContext(AuthContext);
     const { startRecording, stopRecording, recording, locations } = useContext(LocationContext);
     const { createTrack } = useContext(TrackContext);
 
@@ -41,6 +43,16 @@ export default function Stopwatch({ type }) {
         stopRecording();
     }
 
+    const handleCreate = () => {
+        const hours = timer.h < 10 ? "0"+timer.h : timer.h;
+        const minutes = timer.m < 10 ? "0"+timer.m : timer.m;
+        const seconds = timer.s < 10 ? "0"+timer.s : timer.s;
+        
+        const time = `${hours} : ${minutes} : ${seconds}`;
+
+        createTrack({ userId: _id, type, locations, time });
+    }
+
     useEffect(() => {
         Animated.spring(offsetY, { toValue: 0, speed: 6 }).start();
     }, []);
@@ -68,7 +80,7 @@ export default function Stopwatch({ type }) {
                             !recording && locations.length ?
                                 <TouchableOpacity 
                                     style={[ styles.btn, { marginRight: 15 } ]}
-                                    onPress={ () => createTrack({ type, locations }) }
+                                    onPress={ () => handleCreate() }
                                 >
                                     <FontAwesome5 name="flag-checkered" color="#fff" size={ 24 } />
                                 </TouchableOpacity>
