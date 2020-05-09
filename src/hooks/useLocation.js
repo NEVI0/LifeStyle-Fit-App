@@ -3,7 +3,7 @@ import { Accuracy, requestPermissionsAsync, watchPositionAsync } from 'expo-loca
 
 export default (shouldTrack, callback) => {
     
-    const [ error, setError ] = useState(null);
+    const [ locationError, setLocationError ] = useState(null);
 
     useEffect(() => {
         let subscriber;
@@ -17,7 +17,7 @@ export default (shouldTrack, callback) => {
                     distanceInterval: 10
                 }, callback);
             } catch (err) {
-                setError('Por favor, habilite a localização!');
+                setLocationError('Por favor, habilite a localização!');
             }        
         }
 
@@ -37,6 +37,6 @@ export default (shouldTrack, callback) => {
         }
     }, [shouldTrack]);
 
-    return [error, setError];
+    return [locationError, setLocationError];
 
 }
