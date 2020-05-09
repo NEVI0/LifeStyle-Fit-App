@@ -4,6 +4,8 @@ import MapView, { Polyline, Circle } from 'react-native-maps';
 
 import LocationContext from '../contexts/location.context';
 
+import { mapStyleLight } from '../styles/mapStyles';
+
 export default function Map({ color }) {
     
     const { currentLocation, locations } = useContext(LocationContext);
@@ -25,18 +27,20 @@ export default function Map({ color }) {
                 latitudeDelta: 0.01,
                 longitudeDelta: 0.01
             }}
-            showsUserLocation={ true }
             followsUserLocation={ true }
+            customMapStyle={ mapStyleLight }
         >
-            {/* <Circle
+            <Circle
                 center={ currentLocation.coords }
-                radius={ 15 }
-                strokeColor="rgba(0, 0, 0, 1)"
-                fillColor="rgba(0, 0, 0, 0.3)"
-            /> */}
+                radius={ 30 }
+                strokeWidth={ 2 }
+                strokeColor={ color }
+                fillColor="#fff"
+            />
             <Polyline
                 coordinates={ locations.map(item => item.coords) }
-                fillColor={ color }
+                strokeColor={ color }
+                strokeWidth={ 4 }
             />
         </MapView>        
     );
