@@ -16,11 +16,11 @@ export function LocationProvider({ children }) {
         setRecording(false);
     }
 
-    const addLocation = (currentLocation, isRecording) => {
-        setCurrentLocation(currentLocation);
+    const addLocation = (newLocation, isRecording) => {
+        setCurrentLocation(newLocation);
 
         if (isRecording) {
-            setLocations([ ...locations, currentLocation ]);
+            setLocations(locations => [ ...locations, newLocation ]);
         }
     }
 
