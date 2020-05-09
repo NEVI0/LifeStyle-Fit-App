@@ -44,7 +44,7 @@ Estou criando esse projeto como forma de estudo para aprender [React Native](htt
 
 * :ballot_box_with_check: Fazer aparecer uma linha no mapa por onde o usuário passou
 
-* :negative_squared_cross_mark: Enviar os dados do exercício e gravar no Banco de Dados
+* :ballot_box_with_check: Enviar os dados do exercício e gravar no Banco de Dados
 
 * :negative_squared_cross_mark: Criar uma notificação em tempo real para o exercício
 
