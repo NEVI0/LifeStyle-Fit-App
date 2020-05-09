@@ -7,10 +7,10 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
     async (config) => {
-        const token = await AsyncStorage.getItem('@LIFESTYLE:user');
-
+        const token = await AsyncStorage.getItem('@LIFESTYLE:token');
+        
         if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
+            config.headers.Authorization = `${token}`;
         }
 
         return config;
