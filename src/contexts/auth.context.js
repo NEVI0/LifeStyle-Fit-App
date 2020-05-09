@@ -14,7 +14,7 @@ export function AuthProvider({ children }) {
     useEffect(() => {
         const loadStorageData = async () => {
             const storagedUser = await AsyncStorage.getItem('@LIFESTYLE:user');
-            if (storagedUser) setUser(storagedUser);
+            if (storagedUser) setUser(JSON.parse(storagedUser));
         }
 
         loadStorageData();
@@ -29,6 +29,7 @@ export function AuthProvider({ children }) {
             setIsLoading(false);
             setError(null);
             await AsyncStorage.setItem('@LIFESTYLE:user', JSON.stringify(resp.data));
+            await AsyncStorage.setItem('@LIFESTYLE:token', resp.data.token);
 
         } catch ({ response }) {
             setIsLoading(false);
@@ -45,6 +46,7 @@ export function AuthProvider({ children }) {
             setIsLoading(false);
             setError(null);
             await AsyncStorage.setItem('@LIFESTYLE:user', JSON.stringify(resp.data));
+            await AsyncStorage.setItem('@LIFESTYLE:token', resp.data.token);
 
         } catch ({ response }) {
             setIsLoading(false);
