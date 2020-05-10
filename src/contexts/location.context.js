@@ -22,7 +22,12 @@ export function LocationProvider({ children }) {
         if (isRecording) {
             setLocations(locations => [ ...locations, newLocation ]);
         }
-    }
+	}
+	
+	const reset = () => {
+		setRecording(false);
+		setLocations([]);
+	}
 
     return (
         <LocationContext.Provider value={{
@@ -31,7 +36,8 @@ export function LocationProvider({ children }) {
             currentLocation,
             startRecording,
             stopRecording,
-            addLocation
+			addLocation,
+			reset
         }}>
             { children }
         </LocationContext.Provider>
