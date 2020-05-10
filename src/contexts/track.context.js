@@ -23,7 +23,11 @@ export function TrackProvider({ children }) {
 
     const clearErrors = () => {
         setTrackError(null);
-    }
+	}
+	
+	const clearSuccess = () => {
+		setSuccess(null);
+	}
 
     return (
         <TrackContext.Provider value={{
@@ -32,7 +36,8 @@ export function TrackProvider({ children }) {
             success,
             getTracks,
             createTrack,
-            clearErrors
+			clearErrors,
+			clearSuccess
         }}>
             { children }
         </TrackContext.Provider>
