@@ -46,7 +46,7 @@ Estou criando esse projeto como forma de estudo para aprender [React Native](htt
 
 * :ballot_box_with_check: Enviar os dados do exercício e gravar no Banco de Dados
 
-* :negative_squared_cross_mark: Criar uma notificação em tempo real para o exercício
+* :ballot_box_with_check: Criar uma notificação em tempo real para o exercício
 
 * :negative_squared_cross_mark: Fazer a funcionalidade de exercício executar em segundo plano, para que o usuário possa usar outros apps
 
