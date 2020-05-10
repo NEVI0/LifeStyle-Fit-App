@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, Text, TouchableOpacity, Animated } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
+
 import { AntDesign, FontAwesome5, Entypo } from '@expo/vector-icons';
 
 import LocationContext from '../contexts/location.context';
@@ -9,8 +11,10 @@ import AuthContext from '../contexts/auth.context';
 
 export default function Stopwatch({ type }) {
 
+	const navigation = useNavigation();
+
     const { user: { _id } } = useContext(AuthContext);
-    const { startRecording, stopRecording, recording, locations } = useContext(LocationContext);
+    const { startRecording, stopRecording, reset, recording, locations } = useContext(LocationContext);
     const { createTrack } = useContext(TrackContext);
 
     const [ timer, setTimer ] = useState({ s: 0, m: 0, h: 0 });
@@ -44,13 +48,16 @@ export default function Stopwatch({ type }) {
     }
 
     const handleCreate = () => {
+		reset();
+
         const hours = timer.h < 10 ? "0"+timer.h : timer.h;
         const minutes = timer.m < 10 ? "0"+timer.m : timer.m;
         const seconds = timer.s < 10 ? "0"+timer.s : timer.s;
         
         const time = `${hours} : ${minutes} : ${seconds}`;
 
-        createTrack({ userId: _id, type, locations, time });
+		createTrack({ userId: _id, type, locations, time });
+		navigation.navigate('HomePage');
     }
 
     useEffect(() => {
