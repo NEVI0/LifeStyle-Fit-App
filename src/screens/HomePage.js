@@ -1,12 +1,21 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import React, { useContext } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+
+import TrackContext from '../contexts/track.context';
 
 import AddButton from '../components/AddButton';
+import SuccessBox from '../components/SuccessBox';
 
 export default function HomePage({ navigation }) {
-    return (
+	
+	const { success, clearSuccess } = useContext(TrackContext);
+	
+	return (
         <View style={ styles.container }>
-            <Text>gdgfdgdfgdf</Text>
+            
+			{
+				success ? <SuccessBox message={ success } offsetY={ -150 } onRemoveBox={ () => clearSuccess() } /> : null
+			}
 
             <AddButton/>
         </View>
