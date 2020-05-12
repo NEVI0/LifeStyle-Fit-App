@@ -47,16 +47,15 @@ export default function Stopwatch({ type }) {
         stopRecording();
     }
 
-    const handleCreate = () => {
-		reset();
-
-        const hours = timer.h < 10 ? "0"+timer.h : timer.h;
+    const handleCreate = async () => {
+		const hours = timer.h < 10 ? "0"+timer.h : timer.h;
         const minutes = timer.m < 10 ? "0"+timer.m : timer.m;
         const seconds = timer.s < 10 ? "0"+timer.s : timer.s;
         
         const time = `${hours} : ${minutes} : ${seconds}`;
-
-		createTrack({ userId: _id, type, locations, time });
+		
+		await createTrack({ userId: _id, type, locations, time });
+		reset();
 		navigation.navigate('HomePage');
     }
 
