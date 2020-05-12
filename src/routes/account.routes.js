@@ -1,29 +1,11 @@
-import React, { useState } from 'react';
-
+import React from 'react';
 import Account from '../screens/Account';
-
-import * as Font from 'expo-font';
-import { AppLoading } from 'expo';
 
 import { createStackNavigator } from '@react-navigation/stack';
 
-const fetchFonts = () => {
-    return Font.loadAsync({
-        'permanent-maker': require('../../assets/fonts/PermanentMarker-Regular.ttf'),
-    });
-}
-
 const AccountStack = createStackNavigator();
 
-export default function AccountRoutes() {
-
-    const [ fontLoaded, setFontLoaded ] = useState(false);
-
-    if (!fontLoaded) {
-        return (
-            <AppLoading startAsync={ fetchFonts } onFinish={ () => setFontLoaded(true) } />
-        );
-    }
+export default function AccountRoutes({ navigation }) {
 
     return (
         <AccountStack.Navigator>

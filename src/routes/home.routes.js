@@ -2,6 +2,7 @@ import React from 'react';
 
 import HomePage from '../screens/HomePage';
 import TrackCreate from '../screens/TrackCreate';
+import ListAllTracks from '../screens/ListAllTracks';
 
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -41,6 +42,19 @@ export default function HomeRoutes({ route, navigation }) {
                     }
                 }}
             />
+			<HomeStack.Screen
+				name="ListAllTracks"
+				component={ ListAllTracks }
+				options={{
+					headerTitleAlign: 'center',
+					title: 'Exercícios',
+                    headerTitleStyle: {
+                        fontFamily: 'permanent-maker',
+						fontSize: 30,
+						color: '#a0dd11'
+                    }
+                }}
+			/>
         </HomeStack.Navigator>
     );
 
