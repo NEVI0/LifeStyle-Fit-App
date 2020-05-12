@@ -10,7 +10,14 @@ export function TrackProvider({ children }) {
     const [ trackError, setTrackError ] = useState(null);
     const [ success, setSuccess ] = useState(null);
 
-    const getTracks = async () => {}
+    const getTracks = async ({ userId }) => {
+		try {
+			const resp = await api.get(`/track/${userId}`);
+			setAllTracks(resp.data.result.docs);
+		} catch ({ response }) {
+			setTrackError(response.data.message);
+		}
+	}
 
     const createTrack = async ({ userId, type, locations, time }) => {
         try {
