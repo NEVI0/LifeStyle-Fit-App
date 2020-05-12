@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
 
 import AuthContext from '../contexts/auth.context';
+
 import CustomModal from '../components/Modal';
 
 export default function Account({ navigation }) {
@@ -21,14 +22,14 @@ export default function Account({ navigation }) {
                 <FontAwesome name="sign-out" size={ 25 } />
             </TouchableOpacity>
         )
-    });
+	});
 
-    return (
-        <View style={ styles.container }>
+	return (
+        <ScrollView style={ styles.container }>
             
             <View style={ styles.userInfo }>
                 <View style={ styles.avatar }>
-                    <MaterialIcons name="photo-camera" size={ 30 } />
+					<MaterialIcons name="add-a-photo" size={ 25 } />
                 </View>
 
                 <Text style={ styles.username }>{ user.name }</Text>
@@ -46,13 +47,13 @@ export default function Account({ navigation }) {
             : null
         }
         
-        </View>
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+		flex: 1
     },
     headerBtn: {
         marginRight: 15,
@@ -61,9 +62,10 @@ const styles = StyleSheet.create({
     userInfo: {
         padding: 10,
         marginVertical: 20,
-        alignItems: 'center',
+		alignItems: 'center',
     },
     avatar: {
+		backgroundColor: '#fff',
         width: 90,
         height: 90,
         borderRadius: 50,
@@ -76,5 +78,5 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         marginTop: 15
-    }
+	},
 });
