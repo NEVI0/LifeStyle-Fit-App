@@ -1,4 +1,4 @@
-import React, { useContext, useCallback} from 'react';
+import React, { useContext, useCallback, useEffect } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 
 import Map from '../components/Map';
@@ -37,7 +37,11 @@ export default function TrackCreate({ route, navigation }) {
             mode == 'cycling' ? 'Ciclismo' :
             mode == 'running' ? 'Corrida' :
             mode == 'walking' ? 'Caminhada' : null
-    });
+	});
+	
+	useEffect(() => {
+		clearErrors(null);
+	}, []);
 
     return (
         <View style={ styles.container }>
