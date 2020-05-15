@@ -20,37 +20,30 @@ export default function HomePage({ navigation }) {
 	return (
         <View style={ styles.container }>
 
+			<AddButton />
+
 			<View style={ styles.card }>
 				<Text style={ styles.title }>Seus Exercícios</Text>
+				
+				<FlatList
+					data={ allTracks }
+					keyExtractor={ item => item._id }
+					renderItem={ ({ item }) => <ItemList item={ item } page="home" /> }
+					showsVerticalScrollIndicator={ false }
+				/>
 
-				{
-					allTracks !== [] ? (
-						<>
-							<FlatList
-								data={ allTracks }
-								keyExtractor={ item => item._id }
-								renderItem={ ({ item }) => <ItemList item={ item } /> }
-								showsVerticalScrollIndicator={ false }
-							/>
-
-							<TouchableOpacity 
-								style={ styles.viewMoreBtn } 
-								onPress={ () => navigation.navigate('ListAllTracks') }
-							>
-								<Text style={{ color: 'gray' }}>Ver Mais</Text>
-							</TouchableOpacity>
-						</>
-					) : ( 
-						<Text>Você não tem nenhum exercício registrado!</Text> 
-					)
-				}
+				<TouchableOpacity 
+					style={ styles.viewMoreBtn } 
+					// onPress={ () => navigation.navigate('ListAllTracks') }
+				>
+					<Text style={{ color: 'gray' }}>Ver Mais</Text>
+				</TouchableOpacity>
 			</View>
 
 			{
 				success ? <SuccessBox message={ success } offsetY={ -150 } onRemoveBox={ () => clearSuccess() } /> : null
 			}
 
-            <AddButton/>
         </View>
     );
 }
