@@ -29,7 +29,7 @@ export default function TrackCreate({ route, navigation }) {
     navigation.setOptions({
         headerTintColor: color,
         headerLeft: () => (
-            <TouchableOpacity style={ styles.headerBtn } onPress={ () => navigation.pop() }>
+            <TouchableOpacity style={ styles.headerBtn } onPress={ () => navigation.navigate('HomePage') }>
                 <FontAwesome5 name="angle-double-left" size={ 25 } />
             </TouchableOpacity>
         ),

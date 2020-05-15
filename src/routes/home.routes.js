@@ -2,6 +2,7 @@ import React from 'react';
 
 import HomePage from '../screens/HomePage';
 import TrackCreate from '../screens/TrackCreate';
+import TrackDetail from '../screens/TrackDetail';
 import ListAllTracks from '../screens/ListAllTracks';
 
 import { createStackNavigator } from '@react-navigation/stack';
@@ -10,7 +11,7 @@ const HomeStack = createStackNavigator();
 
 export default function HomeRoutes({ route, navigation }) {
 
-    if (route.state && route.state.index > 0) {
+	if (route.state && route.state.index > 0) {
         navigation.setOptions({ tabBarVisible: false });
     } else {
         navigation.setOptions({ tabBarVisible: true });
@@ -55,6 +56,17 @@ export default function HomeRoutes({ route, navigation }) {
                     }
                 }}
 			/>
+			<HomeStack.Screen
+                name="TrackDetail"
+                component={ TrackDetail }
+                options={{
+                    headerTitleAlign: 'center',
+                    headerTitleStyle: {
+                        fontFamily: 'permanent-maker',
+                        fontSize: 30
+                    }
+                }}
+            />
         </HomeStack.Navigator>
     );
 
