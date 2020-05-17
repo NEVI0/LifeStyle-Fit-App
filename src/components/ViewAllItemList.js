@@ -139,7 +139,8 @@ const styles = StyleSheet.create({
 		width: '100%',
 		height: 150,
 		borderTopLeftRadius: 4,
-		borderTopRightRadius: 4
+		borderTopRightRadius: 4,
+		overflow: 'hidden'
 	},
 	map: {
 		flex: 1
