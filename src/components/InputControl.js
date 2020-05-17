@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
     },
     control: {
         backgroundColor: '#fff',
-        paddingVertical: 5,
-        paddingHorizontal: 7,
+        paddingVertical: 6,
+        paddingHorizontal: 8,
         borderRadius: 4,
         shadowColor: "#000",
         shadowOffset: {

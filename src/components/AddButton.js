@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         alignItems: 'center',
         bottom: 15,                                                    
-		right: 15, 
+		right: 15
     },
     shadow: {
         shadowColor: '#1cdbb5',
