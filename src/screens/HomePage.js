@@ -28,13 +28,13 @@ export default function HomePage({ navigation }) {
 				<FlatList
 					data={ allTracks }
 					keyExtractor={ item => item._id }
-					renderItem={ ({ item }) => <ItemList item={ item } page="home" /> }
+					renderItem={ ({ item }) => <ItemList item={ item } /> }
 					showsVerticalScrollIndicator={ false }
 				/>
 
 				<TouchableOpacity 
 					style={ styles.viewMoreBtn } 
-					// onPress={ () => navigation.navigate('ListAllTracks') }
+					onPress={ () => navigation.navigate('ListAllTracks') }
 				>
 					<Text style={{ color: 'gray' }}>Ver Mais</Text>
 				</TouchableOpacity>
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-        elevation: 5,
+		elevation: 5
 	},
 	title: {
 		fontSize: 20,
