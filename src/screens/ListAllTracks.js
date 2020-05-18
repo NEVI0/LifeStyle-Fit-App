@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { StyleSheet, View, ScrollView,TextInput, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, View, ScrollView, TextInput, TouchableOpacity, FlatList } from 'react-native';
 
 import { FontAwesome5 } from '@expo/vector-icons';
 
@@ -26,7 +26,7 @@ export default function ListAllTracks({ navigation }) {
 	}
 
 	return (
-		<ScrollView style={ styles.container }>
+		<View style={ styles.container }>
 			
 			<View style={ styles.searchBox }>
 				<TextInput
@@ -43,7 +43,7 @@ export default function ListAllTracks({ navigation }) {
 				showsVerticalScrollIndicator={ false }
 			/>
 
-		</ScrollView>
+		</View>
 	);
 
 }
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 		marginTop: 15,
 		flexDirection: 'row',
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
 	},
 	input: {
 		flex: 1,
