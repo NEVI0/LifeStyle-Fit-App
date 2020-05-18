@@ -60,6 +60,8 @@ Estou criando esse projeto como forma de estudo para aprender [React Native](htt
 
 * :negative_squared_cross_mark: Fazer a uma rede de amizades com outros usuário **(como o app do Strava)**
 
+* :negative_squared_cross_mark: Fazer a Splash Screen e o Icone da aplicação
+
 * :negative_squared_cross_mark: Usar das metodologias do **UI** para criar interfaces legais
 
 # :dart: Objetivo com esse Projeto
