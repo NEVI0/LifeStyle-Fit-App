@@ -22,7 +22,7 @@ export default function Signup({ navigation }) {
     return (
         <View style={ styles.container }>
 
-            <Text style={ styles.header }>Lifestyle Fit</Text>
+            <Text style={ styles.header }>LifeStyleFit</Text>
 
             <View style={ styles.form }>
 
@@ -36,7 +36,7 @@ export default function Signup({ navigation }) {
 
                 <TouchableHighlight underlayColor="transparent" onPress={ () => signUp({ name, email, password, confirmPass }) }>
                     <View style={ styles.btn }>
-                        { isLoading ? <ActivityIndicator size={ 23 } color="#fff" /> : <Text style={ styles.textBtn }>Cadastrar</Text> }
+                        { isLoading ? <ActivityIndicator size={ 23 } color="#fff" /> : <Text style={ styles.textBtn }>CADASTRAR</Text> }
                     </View>
                 </TouchableHighlight>
 

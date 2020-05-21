@@ -20,7 +20,7 @@ export default function Signin({ navigation }) {
     return (
         <View style={ styles.container }>
 
-            <Text style={ styles.header }>Lifestyle Fit</Text>
+            <Text style={ styles.header }>LifeStyleFit</Text>
 
             <View style={ styles.form }>
 
@@ -30,7 +30,7 @@ export default function Signin({ navigation }) {
 
                 <TouchableHighlight underlayColor="transparent" onPress={ () => signIn({ email, password }) }>
                     <View style={ styles.btn }>                        
-                        { isLoading ? <ActivityIndicator size={ 23 } color="#fff" /> : <Text style={ styles.textBtn }>Entrar</Text> }
+                        { isLoading ? <ActivityIndicator size={ 23 } color="#fff" /> : <Text style={ styles.textBtn }>ENTRAR</Text> }
                     </View>
                 </TouchableHighlight>
 
