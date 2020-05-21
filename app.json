@@ -1,17 +1,19 @@
 {
   "expo": {
-    "name": "Lifestyle Fit",
-    "slug": "tracks",
+    "name": "LifeStyleFit",
+    "slug": "lifestylefit",
+    "description": "App para treinos de Corrida, Caminhada e Ciclismo",
+    "owner": "Névio Costa Magagnin",
+    "githubUrl": "https://github.com/NEVI0/LifeStyle-Fit-App",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/Icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/Splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -23,6 +25,9 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.devinc.lifestylefit"
     }
   }
 }
