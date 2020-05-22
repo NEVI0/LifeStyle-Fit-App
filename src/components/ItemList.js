@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 import { FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons'; 
 
@@ -11,7 +11,7 @@ export default function ItemList({ item }) {
 	const color = item.type == 'running' ? '#780eea' : item.type == 'walking' ? '#0e79ed' : '#ea0e69';
 
 	return (
-		<TouchableHighlight 
+		<TouchableOpacity 
 			underlayColor="transparent"
 			style={ styles.container }
 			onPress={ () => setVisible(true) }
@@ -57,7 +57,7 @@ export default function ItemList({ item }) {
 
 				{ visible ? <DetailModal item={ item } color={ color } onCloseModal={ () => setVisible(false) } /> : null }
 			</View>
-		</TouchableHighlight>		
+		</TouchableOpacity>		
 	);
 
 }
