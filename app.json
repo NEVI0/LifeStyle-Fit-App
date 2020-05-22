@@ -3,7 +3,6 @@
     "name": "LifeStyleFit",
     "slug": "lifestylefit",
     "description": "App para treinos de Corrida, Caminhada e Ciclismo",
-    "owner": "Névio Costa Magagnin",
     "githubUrl": "https://github.com/NEVI0/LifeStyle-Fit-App",
     "platforms": [
       "ios",
