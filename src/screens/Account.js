@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
 
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
 
@@ -23,7 +23,7 @@ export default function Account({ navigation }) {
             </TouchableOpacity>
         )
 	});
-
+	
 	return (
         <ScrollView style={ styles.container }>
             
@@ -36,16 +36,16 @@ export default function Account({ navigation }) {
                 <Text>{ user.email }</Text>
             </View>
 
-        { 
-            isVisible ? 
-                <CustomModal 
-                    title="Alerta!" 
-                    text="Tem certeza que quer sair do app?" 
-                    onCloseModal={ () => setIsVisible(false) }
-                    onDoAction={ () => signOut() } 
-                /> 
-            : null
-        }
+			{ 
+				isVisible ? 
+					<CustomModal 
+						title="Alerta!" 
+						text="Tem certeza que quer sair do app?" 
+						onCloseModal={ () => setIsVisible(false) }
+						onDoAction={ () => signOut() } 
+					/> 
+				: null
+			}
         
         </ScrollView>
     );

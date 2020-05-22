@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { StyleSheet, View, ScrollView, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import React, { useContext, useEffect } from 'react';
+import { StyleSheet, View, TextInput, Text, TouchableOpacity, FlatList } from 'react-native';
 
 import { FontAwesome5 } from '@expo/vector-icons';
 
@@ -11,7 +11,7 @@ import ViewAllItemList from '../components/ViewAllItemList';
 export default function ListAllTracks({ navigation }) {
 
 	const { user } = useContext(AuthContext);
-	const { allTracks, getTracks } = useContext(TrackContext);
+	const { allTracks, getAllTracks, currentPage } = useContext(TrackContext);
 
 	navigation.setOptions({
         headerLeft: () => (
@@ -21,13 +21,13 @@ export default function ListAllTracks({ navigation }) {
         )
 	});
 
-	if (navigation.isFocused()) {
-		getTracks({ userId: user._id });
+	const loadMore = () => {
+		getAllTracks({ userId: user._id, page: currentPage + 1 });
 	}
 
 	return (
 		<View style={ styles.container }>
-			
+
 			<View style={ styles.searchBox }>
 				<TextInput
 					style={ styles.input }
@@ -41,6 +41,8 @@ export default function ListAllTracks({ navigation }) {
 				keyExtractor={ item => item._id }
 				renderItem={ ({ item }) => <ViewAllItemList item={ item } /> }
 				showsVerticalScrollIndicator={ false }
+				onEndReached={ () => loadMore() }
+				onEndReachedThreshold={ 0.1 }
 			/>
 
 		</View>

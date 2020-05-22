@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 
 import TrackContext from '../contexts/track.context';
@@ -11,33 +11,54 @@ import ItemList from '../components/ItemList';
 export default function HomePage({ navigation }) {
 	
 	const { user } = useContext(AuthContext);
-	const { success, clearSuccess, allTracks, getTracks } = useContext(TrackContext);
+	const { success, clearSuccess, allTracks, getTenTracks } = useContext(TrackContext);
 	
-    if (navigation.isFocused()) {
-		getTracks({ userId: user._id });
-	}
+    useEffect(() => {
+		getTenTracks({ userId: user._id });		
+	}, []);
 
 	return (
         <View style={ styles.container }>
 
 			<AddButton />
 
-			<View style={ styles.card }>
-				<Text style={ styles.title }>Seus Exercícios</Text>
+			<View style={ styles.tips }>
+				<Text style={ styles.tipsTitle }>Dicas</Text>
 				
 				<FlatList
-					data={ allTracks }
-					keyExtractor={ item => item._id }
-					renderItem={ ({ item }) => <ItemList item={ item } /> }
-					showsVerticalScrollIndicator={ false }
+					horizontal={ true }
+					showsHorizontalScrollIndicator={ false }
 				/>
+			</View>
 
-				<TouchableOpacity 
-					style={ styles.viewMoreBtn } 
-					onPress={ () => navigation.navigate('ListAllTracks') }
-				>
-					<Text style={{ color: 'gray' }}>Ver Mais</Text>
-				</TouchableOpacity>
+			<View style={[
+				styles.card, 
+				{ height: allTracks[0] == undefined || allTracks.length <= 4 ? 'auto' : 400 } 
+			]}>
+				<Text style={ styles.title }>Seus Exercícios</Text>
+				
+				{ allTracks[0] == undefined ? (
+					<View style={ styles.noneTrack }>
+						<Text>Você não possui nenhum exercício registrado!</Text>
+					</View>
+				) : (
+					<>
+						<FlatList
+							data={ allTracks }
+							keyExtractor={ item => item._id }
+							renderItem={ ({ item }) => <ItemList item={ item } /> }
+							showsVerticalScrollIndicator={ false }
+						/>
+
+						<TouchableOpacity 
+							style={ styles.viewMoreBtn } 
+							onPress={ () => navigation.navigate('ListAllTracks') }
+						>
+							<Text style={{ color: 'gray' }}>Ver Mais</Text>
+						</TouchableOpacity>
+					</>
+				) }
+
 			</View>
 
 			{
@@ -65,7 +86,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-		elevation: 5
+		elevation: 5,
 	},
 	title: {
 		fontSize: 20,
@@ -74,11 +95,25 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		marginVertical: 10
 	},
+	tipsTitle: {
+		fontSize: 25,
+		color: '#3d25db',
+		fontWeight: 'bold',
+		textAlign: 'left',
+		marginVertical: 10,
+		marginHorizontal: 20
+	},
 	viewMoreBtn: {
 		alignSelf: 'center',
 		alignItems: 'center',
 		justifyContent: 'center',
 		paddingVertical: 10,
 		width: '80%',
+	},
+	noneTrack: {
+		alignItems: 'center',
+		justifyContent: 'center',
+		marginBottom: 10,
+		marginTop: 5
 	}
 });

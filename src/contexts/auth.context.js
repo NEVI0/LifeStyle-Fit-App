@@ -13,8 +13,8 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
         const loadStorageData = async () => {
-            const storagedUser = await AsyncStorage.getItem('@LIFESTYLE:user');
-            if (storagedUser) setUser(JSON.parse(storagedUser));
+			const storagedUser = await AsyncStorage.getItem('@LIFESTYLE:user');
+            if (storagedUser) setUser(JSON.parse(storagedUser.user));
         }
 
         loadStorageData();
@@ -62,8 +62,8 @@ export function AuthProvider({ children }) {
     const clearErrors = () => {
         setIsLoading(false);
         setError(null);
-    }
-
+	}
+	
     return (
         <AuthContext.Provider value={{
             signed: !!user,
@@ -73,7 +73,7 @@ export function AuthProvider({ children }) {
             signIn,
             signUp,
             signOut,
-            clearErrors
+			clearErrors,
         }}>
             { children }
         </AuthContext.Provider>
