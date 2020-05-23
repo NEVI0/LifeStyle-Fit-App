@@ -11,7 +11,7 @@ export default function ItemList({ item }) {
 	const color = item.type == 'running' ? '#780eea' : item.type == 'walking' ? '#0e79ed' : '#ea0e69';
 
 	return (
-		<TouchableOpacity 
+		<TouchableOpacity
 			underlayColor="transparent"
 			style={ styles.container }
 			onPress={ () => setVisible(true) }
