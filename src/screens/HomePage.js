@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from 'react';
-import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity, ScrollView } from 'react-native';
+
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import TrackContext from '../contexts/track.context';
 import AuthContext from '../contexts/auth.context';
@@ -7,6 +9,9 @@ import AuthContext from '../contexts/auth.context';
 import AddButton from '../components/AddButton';
 import SuccessBox from '../components/SuccessBox';
 import ItemList from '../components/ItemList';
+import ItemTip from '../components/ItemTip';
+
+import tipsData from '../mocked/tipsData';
 
 export default function HomePage({ navigation }) {
 	
@@ -18,54 +23,59 @@ export default function HomePage({ navigation }) {
 	}, []);
 
 	return (
-        <View style={ styles.container }>
-
+		<>
 			<AddButton />
 
-			<View style={ styles.tips }>
-				<Text style={ styles.tipsTitle }>Dicas</Text>
-				
-				<FlatList
-					horizontal={ true }
-					showsHorizontalScrollIndicator={ false }
-				/>
-			</View>
+			<ScrollView style={ styles.container }>
 
-			<View style={[
-				styles.card, 
-				{ height: allTracks[0] == undefined || allTracks.length <= 4 ? 'auto' : 400 } 
-			]}>
-				<Text style={ styles.title }>Seus Exercícios</Text>
-				
-				{ allTracks[0] == undefined ? (
-					<View style={ styles.noneTrack }>
-						<Text>Você não possui nenhum exercício registrado!</Text>
+				<View style={ styles.tips }>
+					<View style={{ flexDirection: 'row', alignItems: 'center' }}>
+						<Text style={ styles.tipsTitle }>Dicas</Text>
+						<MaterialCommunityIcons style={{ marginTop: 5 }}name="ray-start-arrow" size={ 22 } color="#1c05c6" />
 					</View>
-				) : (
-					<>
-						<FlatList
-							data={ allTracks }
-							keyExtractor={ item => item._id }
-							renderItem={ ({ item }) => <ItemList item={ item } /> }
-							showsVerticalScrollIndicator={ false }
-						/>
+					
+					<FlatList
+						horizontal={ true }
+						showsHorizontalScrollIndicator={ false }
+						data={ tipsData }
+						keyExtractor={ item => (item.id).toString() }
+						renderItem={ item => <ItemTip item={ item } /> }
+					/>
+				</View>
 
-						<TouchableOpacity 
-							style={ styles.viewMoreBtn } 
-							onPress={ () => navigation.navigate('ListAllTracks') }
-						>
-							<Text style={{ color: 'gray' }}>Ver Mais</Text>
-						</TouchableOpacity>
-					</>
-				) }
+				<View style={ styles.card }>
+					<Text style={ styles.title }>SEUS EXERCÍCIOS</Text>
+					
+					{ allTracks[0] == undefined ? (
+						<View style={ styles.noneTrack }>
+							<Text>Você não possui nenhum exercício registrado!</Text>
+						</View>
+					) : (
+						<>
+							<FlatList
+								data={ allTracks }
+								keyExtractor={ item => item._id }
+								renderItem={ ({ item }) => <ItemList item={ item } /> }
+								showsVerticalScrollIndicator={ false }
+							/>
 
-			</View>
+							{ allTracks.length == 10 ? (
+								<TouchableOpacity 
+									style={ styles.viewMoreBtn } 
+									onPress={ () => navigation.navigate('ListAllTracks') }
+								>
+									<Text style={{ color: 'gray' }}>Ver Mais</Text>
+								</TouchableOpacity>
+							) : null }							
+						</>
+					) }
 
-			{
-				success ? <SuccessBox message={ success } offsetY={ -150 } onRemoveBox={ () => clearSuccess() } /> : null
-			}
+				</View>
 
-        </View>
+			</ScrollView>
+
+			{ success ? <SuccessBox message={ success } offsetY={ -150 } onRemoveBox={ () => clearSuccess() } /> : null }
+		</>
     );
 }
 
@@ -77,7 +87,7 @@ const styles = StyleSheet.create({
 		margin: 20,
 		backgroundColor: '#fff',
 		padding: 10,
-		borderRadius: 4,
+		borderRadius: 10,
 		marginBottom: 20,
 		shadowColor: '#1cdbb5',
         shadowOffset: {
@@ -91,9 +101,9 @@ const styles = StyleSheet.create({
 	title: {
 		fontSize: 20,
 		color: '#a0dd11',
-		fontWeight: 'bold',
 		textAlign: 'center',
-		marginVertical: 10
+		marginVertical: 10,
+		fontFamily: 'permanent-maker'
 	},
 	tipsTitle: {
 		fontSize: 25,
@@ -101,7 +111,8 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		textAlign: 'left',
 		marginVertical: 10,
-		marginHorizontal: 20
+		marginLeft: 20,
+		marginRight: 7
 	},
 	viewMoreBtn: {
 		alignSelf: 'center',
