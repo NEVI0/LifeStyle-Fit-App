@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#fff',
 		flex: 1,
 		marginHorizontal: 20,
-		borderRadius: 4,
+		borderRadius: 10,
 		shadowColor: '#1cdbb5',
         shadowOffset: {
             width: 0,
@@ -138,8 +138,8 @@ const styles = StyleSheet.create({
 	mapContainer: {
 		width: '100%',
 		height: 150,
-		borderTopLeftRadius: 4,
-		borderTopRightRadius: 4,
+		borderTopLeftRadius: 10,
+		borderTopRightRadius: 10,
 		overflow: 'hidden'
 	},
 	map: {
