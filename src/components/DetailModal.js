@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     content: {
 		backgroundColor: '#fff',
         width: '80%',
-        borderRadius: 4,
+        borderRadius: 10,
 	},
 	mapContainer: {
 		width: '100%',
