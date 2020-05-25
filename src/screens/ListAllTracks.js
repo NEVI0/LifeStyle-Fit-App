@@ -28,14 +28,6 @@ export default function ListAllTracks({ navigation }) {
 	return (
 		<View style={ styles.container }>
 
-			<View style={ styles.searchBox }>
-				<TextInput
-					style={ styles.input }
-					placeholder="Pesquise um exercício..."
-				/>
-				<FontAwesome5 name="search" size={ 20 } color="#a0dd11" />
-			</View>
-
 			<FlatList
 				data={ allTracks }
 				keyExtractor={ item => item._id }
@@ -43,6 +35,15 @@ export default function ListAllTracks({ navigation }) {
 				showsVerticalScrollIndicator={ false }
 				onEndReached={ () => loadMore() }
 				onEndReachedThreshold={ 0.1 }
+				ListHeaderComponent={ () => (
+					<View style={ styles.searchBox }>
+						<TextInput
+							style={ styles.input }
+							placeholder="Pesquise um exercício..."
+						/>
+						<FontAwesome5 name="search" size={ 20 } color="#a0dd11" style={ styles.searchIcon } />
+					</View>
+				) }
 			/>
 
 		</View>
@@ -73,6 +74,7 @@ const styles = StyleSheet.create({
 		elevation: 7,
 		marginHorizontal: 20,
 		marginTop: 15,
+		marginBottom: 10,
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -80,5 +82,8 @@ const styles = StyleSheet.create({
 	input: {
 		flex: 1,
 		color: '#000'
+	},
+	searchIcon: {
+		marginHorizontal: 5,
 	}
 });
