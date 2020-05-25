@@ -50,7 +50,7 @@ Estou criando esse projeto como forma de estudo para aprender [React Native](htt
 
 * :negative_squared_cross_mark: Fazer a funcionalidade de exercício executar em segundo plano, para que o usuário possa usar outros apps
 
-* :negative_squared_cross_mark: Melhorar a tela de **Minha Conta**
+* :ballot_box_with_check: Melhorar a tela de **Minha Conta**
 
 * :ballot_box_with_check: Melhorar a tela de **Home Page**
 
