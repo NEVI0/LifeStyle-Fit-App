@@ -46,7 +46,12 @@ export default function Signin({ navigation }) {
 
             </View>
 
-            { error ? <ErrorBox error={ error } onRemoveBox={ () => clearErrors() } type="bottom" offsetY={ 80 } /> : null }
+			{ error ? <ErrorBox 
+				error={ error }
+				offsetY={ 80 }
+				onRemoveBox={ () => clearErrors() }
+				type="bottom"
+			/> : null }
 
         </View>
     );

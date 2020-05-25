@@ -3,12 +3,12 @@ import { StyleSheet, View, TouchableOpacity } from 'react-native';
 
 import Map from '../components/Map';
 import ErrorBox from '../components/ErrorBox';
+import Stopwatch from '../components/Stopwatch';
 
 import LocationContext from '../contexts/location.context';
 import TrackContext from '../contexts/track.context';
 
 import useLocation from '../hooks/useLocation';
-import Stopwatch from '../components/Stopwatch';
 
 import { FontAwesome5 } from '@expo/vector-icons';
 
@@ -44,19 +44,25 @@ export default function TrackCreate({ route, navigation }) {
 	}, []);
 
     return (
-        <View style={ styles.container }>
+		<View style={ styles.container }>
             <Map color={ color } />
 
-            { 
-                locationError ? 
-                    <ErrorBox error={ locationError } onRemoveBox={ () => setLocationError(null) } type="top" offsetY={ -150 } /> 
-                : null
-            }
+			{ 
+				locationError ? <ErrorBox 
+					error={ locationError }
+					offsetY={ -180 }
+					onRemoveBox={ () => setLocationError(null) }
+					type="top"
+				/> : null
+			}
 
             { 
-                trackError ? 
-                    <ErrorBox error={ trackError } onRemoveBox={ () => clearErrors(null) } type="top" offsetY={ -150 } /> 
-                : null
+                trackError ? <ErrorBox 
+					error={ trackError }
+					offsetY={ -180 }
+					onRemoveBox={ () => clearErrors() }
+					type="top"
+				/> : null
             }
 
             <Stopwatch type={ mode } /> 
