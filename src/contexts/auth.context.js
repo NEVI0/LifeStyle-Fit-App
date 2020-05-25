@@ -13,8 +13,12 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
         const loadStorageData = async () => {
-			const storagedUser = await AsyncStorage.getItem('@LIFESTYLE:user');
-            if (storagedUser) setUser(JSON.parse(storagedUser.user));
+			try {
+				const storagedUser = await AsyncStorage.getItem('@LIFESTYLE:user');
+            	if (storagedUser) setUser(JSON.parse(storagedUser.user));
+			} catch (err) {
+				console.log("Error: ", err);
+			}
         }
 
         loadStorageData();
