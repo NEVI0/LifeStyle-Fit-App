@@ -64,7 +64,9 @@ Estou criando esse projeto como forma de estudo para aprender [React Native](htt
 
 * :negative_squared_cross_mark: Arrumar o estilo (zIndex) dos botos do component **AddButtom**
 
-* :negative_squared_cross_mark: Usar das metodologias do **UI** para criar interfaces legais
+* :ballot_box_with_check: Usar das metodologias do **UI** para criar uma interface legal
+
+* :negative_squared_cross_mark: Arrumar a parte de registro de exercício (**nãi está funcionando corretamente**)
 
 * :negative_squared_cross_mark: Fazer o Mapa funcionar nas versões finais do app
 
