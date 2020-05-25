@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     },
     errorBoxTop: {
         position: 'absolute',
-        top: 20,
+        top: 10,
         width: '90%',
         alignSelf: 'center',
         backgroundColor: '#f23535',
