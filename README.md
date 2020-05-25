@@ -62,7 +62,11 @@ Estou criando esse projeto como forma de estudo para aprender [React Native](htt
 
 * :ballot_box_with_check: Fazer a Splash Screen e o Icone da aplicação
 
+* :negative_squared_cross_mark: Arrumar o estilo (zIndex) dos botos do component **AddButtom**
+
 * :negative_squared_cross_mark: Usar das metodologias do **UI** para criar interfaces legais
+
+* :negative_squared_cross_mark: Fazer o Mapa funcionar nas versões finais do app
 
 # :dart: Objetivo com esse Projeto
 
