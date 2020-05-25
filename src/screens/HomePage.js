@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { StyleSheet, View, Text, FlatList, TouchableOpacity, ScrollView } from 'react-native';
 
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 import TrackContext from '../contexts/track.context';
 import AuthContext from '../contexts/auth.context';
@@ -31,7 +31,7 @@ export default function HomePage({ navigation }) {
 				<View style={ styles.tips }>
 					<View style={{ flexDirection: 'row', alignItems: 'center' }}>
 						<Text style={ styles.tipsTitle }>Dicas</Text>
-						<MaterialCommunityIcons style={{ marginTop: 5 }}name="ray-start-arrow" size={ 22 } color="#1c05c6" />
+						<AntDesign style={{ marginTop: 7 }} name="ellipsis1" size={ 22 } color="#6a58f4" />
 					</View>
 					
 					<FlatList
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
         flex: 1
 	},
 	card: {
-		margin: 20,
+		margin: 15,
 		backgroundColor: '#fff',
 		padding: 10,
 		borderRadius: 10,
