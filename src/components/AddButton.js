@@ -8,12 +8,12 @@ export default function AddButton() {
 
     const navigation = useNavigation();
 
-    const [ mode, setMode ] = useState(new Animated.Value(0));
+	const [ mode ] = useState(new Animated.Value(0));
 
     const handleAnimation = () => {
         Animated.timing(mode, {
             toValue: mode._value === 0 ? 1 : 0
-        }).start();
+		}).start();
     }
 
     const rotation = mode.interpolate({
@@ -50,6 +50,7 @@ export default function AddButton() {
 
     return (
         <View style={ styles.container }>
+            <View style={{ position: 'relative' }}>
 
             <Animated.View style={{ position: 'absolute', left: cyclingX, top: cyclingY }}>
                 <TouchableHighlight 
@@ -84,7 +85,7 @@ export default function AddButton() {
                 </TouchableHighlight>
             </Animated.View>
 
-            <Animated.View style={[ styles.btn, styles.shadow ]}>
+			<Animated.View style={[ styles.btn, styles.shadow ]}>
                 <TouchableHighlight                
                     underlayColor="#1cdbb5"
                     onPress={ () => handleAnimation() }
@@ -93,8 +94,9 @@ export default function AddButton() {
                         <MaterialIcons name="add" color="#fff" size={ 30 } />
                     </Animated.View>
                 </TouchableHighlight>
-            </Animated.View>            
-
+            </Animated.View>
+			
+			</View>
         </View>
     );
 }
@@ -102,11 +104,13 @@ export default function AddButton() {
 const styles = StyleSheet.create({
     container: {
         position: 'absolute',
-        alignItems: 'center',
+		alignItems: 'flex-end',
+		justifyContent: 'flex-end',
+		height: '40%',
+		width: '50%',
         bottom: 15,                                                    
 		right: 15,
-		elevation: 10,
-		zIndex: 1
+		zIndex: 1,
     },
     shadow: {
         shadowColor: '#1cdbb5',
@@ -126,7 +130,8 @@ const styles = StyleSheet.create({
         height: 60,
         borderRadius: 36,
         borderWidth: 3,
-        borderColor: '#fff'
+        borderColor: '#fff',
+		zIndex: 2
     },
     btnSecondary: {
         position: 'relative',
@@ -137,7 +142,7 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         backgroundColor: '#780ef2',
         borderWidth: 3,
-        borderColor: '#fff'
+		borderColor: '#fff',
     },
     colorPink: { backgroundColor: '#ea0e69' },
     colorBlue: { backgroundColor: '#0e79ed' },
