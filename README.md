@@ -46,15 +46,13 @@ Estou criando esse projeto como forma de estudo para aprender [React Native](htt
 
 * :ballot_box_with_check: Enviar os dados do exercício e gravar no Banco de Dados
 
-* :ballot_box_with_check: Criar uma notificação em tempo real para o exercício
-
 * :negative_squared_cross_mark: Fazer a funcionalidade de exercício executar em segundo plano, para que o usuário possa usar outros apps
-
-* :ballot_box_with_check: Melhorar a tela de **Minha Conta**
 
 * :ballot_box_with_check: Melhorar a tela de **Home Page**
 
-* :negative_squared_cross_mark: Listar todos os exercícios que o usuário fez em um **InfinitScroll**
+* :ballot_box_with_check: Melhorar a tela de **Minha Conta**
+
+* :ballot_box_with_check: Listar todos os exercícios que o usuário fez em um **InfinitScroll**
 
 * :negative_squared_cross_mark: Fazer a funcionalidade de escolher a foto de perfil
 
@@ -62,13 +60,21 @@ Estou criando esse projeto como forma de estudo para aprender [React Native](htt
 
 * :ballot_box_with_check: Fazer a Splash Screen e o Icone da aplicação
 
-* :negative_squared_cross_mark: Arrumar o estilo (zIndex) dos botos do component **AddButtom**
+* :ballot_box_with_check: Arrumar o estilo (zIndex) dos botoes do component **AddButtom**
 
-* :ballot_box_with_check: Usar das metodologias do **UI** para criar uma interface legal
+* :negative_squared_cross_mark: Arrumar a parte de registro de exercício (**não está funcionando corretamente**)
 
-* :negative_squared_cross_mark: Arrumar a parte de registro de exercício (**nãi está funcionando corretamente**)
+* :ballot_box_with_check: Fazer o Mapa funcionar na versão APK
 
-* :negative_squared_cross_mark: Fazer o Mapa funcionar nas versões finais do app
+* :negative_squared_cross_mark: Arrumar o fetching of data da Home Page (**não está trazendo os dados quando a página é acessada**)
+
+* :negative_squared_cross_mark: Criar no card de **Estatísticas** algum conteudo
+
+* :negative_squared_cross_mark: Criar a funcionalidade de **Recuperar Senha**
+
+* :negative_squared_cross_mark: Criar a funcionalidade de **Excluir Conta**
+
+* :negative_squared_cross_mark: Arrumar a modal de Signout
 
 # :dart: Objetivo com esse Projeto
 
