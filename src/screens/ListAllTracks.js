@@ -25,9 +25,13 @@ export default function ListAllTracks({ navigation }) {
 		getAllTracks({ userId: user._id, page: currentPage + 1 });
 	}
 
+	useEffect(() => {
+		getAllTracks({ userId: user._id });
+	}, []);
+
 	return (
 		<View style={ styles.container }>
-
+			<Text>{ allTracks.length }</Text>
 			<FlatList
 				data={ allTracks }
 				keyExtractor={ item => item._id }
