@@ -16,7 +16,7 @@ import tipsData from '../mocked/tipsData';
 export default function HomePage({ navigation }) {
 	
 	const { user } = useContext(AuthContext);
-	const { success, clearSuccess, allTracks, getTenTracks } = useContext(TrackContext);
+	const { success, clearSuccess, tenTracks, getTenTracks } = useContext(TrackContext);
 	
     useEffect(() => {
 		getTenTracks({ userId: user._id });		
@@ -46,20 +46,20 @@ export default function HomePage({ navigation }) {
 				<View style={ styles.card }>
 					<Text style={ styles.title }>SEUS EXERCÍCIOS</Text>
 					
-					{ allTracks[0] == undefined ? (
+					{ tenTracks[0] == undefined ? (
 						<View style={ styles.noneTrack }>
 							<Text>Você não possui nenhum exercício registrado!</Text>
 						</View>
 					) : (
 						<>
 							<FlatList
-								data={ allTracks }
+								data={ tenTracks }
 								keyExtractor={ item => item._id }
 								renderItem={ ({ item }) => <ItemList item={ item } /> }
 								showsVerticalScrollIndicator={ false }
 							/>
 
-							{ allTracks.length == 10 ? (
+							{ tenTracks.length == 10 ? (
 								<TouchableOpacity 
 									style={ styles.viewMoreBtn } 
 									onPress={ () => navigation.navigate('ListAllTracks') }
