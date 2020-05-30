@@ -9,11 +9,12 @@ export default function AddButton() {
     const navigation = useNavigation();
 
 	const [ mode ] = useState(new Animated.Value(0));
+	const [ isActive, setIsActive ] = useState(false);
 
     const handleAnimation = () => {
         Animated.timing(mode, {
             toValue: mode._value === 0 ? 1 : 0
-		}).start();
+		}).start(() => setIsActive(!isActive));
     }
 
     const rotation = mode.interpolate({
@@ -49,7 +50,10 @@ export default function AddButton() {
     });
 
     return (
-        <View style={ styles.container }>
+        <View style={[ styles.container, {
+			height: isActive ? 175 : 'auto',
+			width: isActive ? 175 : 'auto'
+		} ]}>
             <View style={{ position: 'relative' }}>
 
             <Animated.View style={{ position: 'absolute', left: cyclingX, top: cyclingY }}>
@@ -106,8 +110,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
 		alignItems: 'flex-end',
 		justifyContent: 'flex-end',
-		height: '40%',
-		width: '50%',
         bottom: 15,                                                    
 		right: 15,
 		zIndex: 1,
