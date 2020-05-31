@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     },
     box: {
         position: 'absolute',
-        top: 10,
+        top: 15,
         width: '90%',
         alignSelf: 'center',
         backgroundColor: '#18ce34',
