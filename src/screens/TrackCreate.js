@@ -1,5 +1,5 @@
 import React, { useContext, useCallback, useEffect } from 'react';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import Map from '../components/Map';
 import ErrorBox from '../components/ErrorBox';
@@ -9,8 +9,6 @@ import LocationContext from '../contexts/location.context';
 import TrackContext from '../contexts/track.context';
 
 import useLocation from '../hooks/useLocation';
-
-import { FontAwesome5 } from '@expo/vector-icons';
 
 export default function TrackCreate({ route, navigation }) {
     
@@ -27,12 +25,7 @@ export default function TrackCreate({ route, navigation }) {
     );
 
     navigation.setOptions({
-        headerTintColor: color,
-        headerLeft: () => (
-            <TouchableOpacity style={ styles.headerBtn } onPress={ () => navigation.navigate('HomePage') }>
-                <FontAwesome5 name="angle-double-left" size={ 25 } />
-            </TouchableOpacity>
-        ),
+		headerTintColor: color,		
         headerTitle:
             mode == 'cycling' ? 'Ciclismo' :
             mode == 'running' ? 'Corrida' :
@@ -73,9 +66,5 @@ export default function TrackCreate({ route, navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1
-    },
-    headerBtn: {
-        marginLeft: 15,
-        marginTop: 5
     }
 });
