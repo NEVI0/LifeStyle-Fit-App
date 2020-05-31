@@ -11,27 +11,37 @@ import ViewAllItemList from '../components/ViewAllItemList';
 export default function ListAllTracks({ navigation }) {
 
 	const { user } = useContext(AuthContext);
-	const { allTracks, getAllTracks, currentPage } = useContext(TrackContext);
+	const { allTracks, getAllTracks, currentPage, reset } = useContext(TrackContext);
 
 	navigation.setOptions({
         headerLeft: () => (
-            <TouchableOpacity style={ styles.headerBtn } onPress={ () => navigation.navigate('HomePage') }>
+			<TouchableOpacity
+				style={ styles.headerBtn }
+				onPress={ () => {
+					reset();
+					navigation.navigate('HomePage')
+				} }
+			>
                 <FontAwesome5 name="angle-double-left" size={ 25 } />
             </TouchableOpacity>
         )
 	});
+
+	// if (!navigation.isFocused()) {
+	// 	reset();
+	// }
 
 	const loadMore = () => {
 		getAllTracks({ userId: user._id, page: currentPage + 1 });
 	}
 
 	useEffect(() => {
-		getAllTracks({ userId: user._id });
+		getAllTracks({ userId: user._id, page: 1 });
 	}, []);
 
 	return (
 		<View style={ styles.container }>
-			<Text>{ allTracks.length }</Text>
+
 			<FlatList
 				data={ allTracks }
 				keyExtractor={ item => item._id }

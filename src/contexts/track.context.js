@@ -9,9 +9,7 @@ export function TrackProvider({ children }) {
 	const [ tenTracks, setTenTracks ] = useState([]);
 	const [ allTracks, setAllTracks ] = useState([]);
 
-	const [ totalOfPages, setTotalOfPages ] = useState(null);
 	const [ currentPage, setCurrentPage ] = useState(null);
-
     const [ trackError, setTrackError ] = useState(null);
 	const [ success, setSuccess ] = useState(null);
 
@@ -19,18 +17,22 @@ export function TrackProvider({ children }) {
 		try {
 			const resp = await api.get(`/track/${userId}?page=1`);
 			setTenTracks(resp.data.result.docs);
-			setTotalOfPages(resp.data.result.pages);
 		} catch ({ response }) {
 			setTrackError(response.data.message);
 		}
 	}
 
-	const getAllTracks = async ({ userId, page = 1 }) => {
+	const getAllTracks = async ({ userId, page }) => {
 		try {
-			if (page == totalOfPages) return;			
 			setCurrentPage(page);
+			
 			const resp = await api.get(`/track/${userId}?page=${page}`);
-			setAllTracks([ ...allTracks, ...resp.data.result.docs ]);
+			
+			if (allTracks[0] == undefined) {
+				setAllTracks(resp.data.result.docs);
+			} else {
+				setAllTracks([ ...allTracks, ...resp.data.result.docs ]);
+			}
 		} catch ({ response }) {
 			setTrackError(response.data.message);
 		}
@@ -53,11 +55,14 @@ export function TrackProvider({ children }) {
 		setSuccess(null);
 	}
 
+	const reset = () => {
+		setAllTracks([]);
+	}
+
     return (
         <TrackContext.Provider value={{
 			tenTracks,
 			allTracks,
-			totalOfPages,
 			currentPage,
             trackError,
 			success,
@@ -65,7 +70,8 @@ export function TrackProvider({ children }) {
 			getAllTracks,
             createTrack,
 			clearErrors,
-			clearSuccess
+			clearSuccess,
+			reset
         }}>
             { children }
         </TrackContext.Provider>
