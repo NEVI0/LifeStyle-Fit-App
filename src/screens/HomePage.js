@@ -1,7 +1,5 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View, Text, FlatList, TouchableOpacity, ScrollView } from 'react-native';
-
-import { AntDesign } from '@expo/vector-icons';
 
 import TrackContext from '../contexts/track.context';
 import AuthContext from '../contexts/auth.context';
@@ -18,9 +16,13 @@ export default function HomePage({ navigation }) {
 	const { user } = useContext(AuthContext);
 	const { success, clearSuccess, tenTracks, getTenTracks } = useContext(TrackContext);
 	
-    useEffect(() => {
-		getTenTracks({ userId: user._id });		
-	}, []);
+    // useEffect(() => {
+	// 	getTenTracks({ userId: user._id });		
+	// }, []);
+
+	if (navigation.isFocused()) {
+		getTenTracks({ userId: user._id });
+	}
 
 	return (
 		<>
@@ -29,10 +31,7 @@ export default function HomePage({ navigation }) {
 			<ScrollView style={ styles.container }>
 
 				<View style={ styles.tips }>
-					<View style={{ flexDirection: 'row', alignItems: 'center' }}>
-						<Text style={ styles.tipsTitle }>Dicas</Text>
-						<AntDesign style={{ marginTop: 7 }} name="ellipsis1" size={ 22 } color="#6a58f4" />
-					</View>
+					<Text style={ styles.tipsTitle }>Dicas</Text>
 					
 					<FlatList
 						horizontal={ true }
@@ -106,13 +105,13 @@ const styles = StyleSheet.create({
 		fontFamily: 'permanent-maker'
 	},
 	tipsTitle: {
-		fontSize: 25,
+		fontSize: 20,
 		color: '#3d25db',
 		fontWeight: 'bold',
 		textAlign: 'left',
-		marginVertical: 10,
-		marginLeft: 20,
-		marginRight: 7
+		marginTop: 10,
+		marginBottom: 0,
+		marginLeft: 20
 	},
 	viewMoreBtn: {
 		alignSelf: 'center',
